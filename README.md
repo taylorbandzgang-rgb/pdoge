@@ -88,6 +88,10 @@ node scripts/deploy-pdoge.js
 
 Deploy scripts live in `scripts/`, contracts in `contracts/`. The relayer (`scripts/relayer.js`), the RPC proxy (`scripts/rpc-proxy.js`), the faucet server (`scripts/wpeth-faucet-server.js`), and the systemd units (`systemd/`) are all here too — that's the whole production setup, not just the contracts.
 
+## Run your own node
+
+The chain is multi-node — anyone can join. See **[NODE_JOINING.md](NODE_JOINING.md)** for the full guide: geth 1.13.15, the genesis file, the bootnode, and how to get PDOGE for gas. The genesis is in this repo (`genesis.json`) and at https://34.148.123.122.nip.io/site/genesis.json.
+
 ## Contributing
 
 We want nerds. See [CONTRIBUTING.md](CONTRIBUTING.md). Good places to start:
@@ -101,7 +105,7 @@ Open an issue first for big changes. Small fixes, just send a PR.
 
 ## Security & honesty
 
-- This is a **private/dev chain**, not a public L2. No outside validators, no decentralization, no Ethereum security.
+- This is a **small PoA chain**, not a public L2. It runs geth Clique with a single validator today; outside nodes can join and validators are voted in by existing signers (see [NODE_JOINING.md](NODE_JOINING.md)). It does not have Ethereum-level security.
 - The **bridge is operator-trusted**: the vault code is trustless, but releases run through an operator key. We say that plainly.
 - Contracts are **unaudited**. Don't put in more than you can lose.
 - The vault code is small and readable — read it before trusting it.
@@ -109,6 +113,9 @@ Open an issue first for big changes. Small fixes, just send a PR.
 ## Links
 
 - **RPC:** https://34.148.123.122.nip.io
+- **Genesis:** https://34.148.123.122.nip.io/site/genesis.json (also in this repo as `genesis.json`)
+- **Bootnode:** `enode://ba923083b792a691989c387fdcaa94dce24f9df349cbddf6c8d21011295426457ceb390aeb6bd527a344ee72cf49e40df4cddfaeba2fc66f3a0a0b6b27fff56f@34.148.123.122:30303`
+- **Run your own node:** [NODE_JOINING.md](NODE_JOINING.md)
 - **Official site:** https://34.148.123.122.nip.io/site/
 - **Dollar Dash (wPETH faucet game):** https://34.148.123.122.nip.io/dollar-dash/
 - **PETH on Uniswap:** PETH/ETH pool `0x93333653a1E61C9F3C573165aa8f9C394d457E3f`

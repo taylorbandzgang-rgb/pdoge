@@ -19,6 +19,7 @@ Welcome. This is a real chain with real (small) money on it, so we keep it simpl
 
 - **Review the vault.** `contracts/MemeVault.sol`, `contracts/WrappedMeme.sol`, `contracts/MemeVaultPDOGE.sol` are short. Read them, try to break them, open an issue with what you find.
 - **Harden the relayer.** `scripts/relayer.js` has a known dedup weakness on restart (it once re-minted unbacked wPETH). A durable processed-event store would fix it properly.
+- **Build a PDOGE faucet.** New node operators need PDOGE for gas, and right now the only way to get starter PDOGE is to ask the operator. A small public faucet (rate-limited, same pattern as the wPETH faucet in `scripts/wpeth-faucet-server.js`) would let nerds fund themselves.
 - **DEX improvements.** `contracts/PDOGESwapFactory.sol` and `PDOGESwapPair.sol` are a minimal Uniswap V2-style pair. Fees, better routing, and a frontend are all open.
 - **Docs.** If something in the README is wrong or unclear, fix it. Docs PRs are real PRs.
 
