@@ -1,0 +1,25 @@
+# Secrets — never commit these
+.env
+.env.*
+! .env.example
+*.pem
+*.key
+id_rsa*
+*.mnemonic
+
+# Dependencies & build output
+node_modules/
+artifacts/
+cache/
+typechain-types/
+
+# Local chain state & runtime data (contains accounts / operator state)
+chain-state.json
+relayer-state.json
+*.log
+*.tar.gz
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

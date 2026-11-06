@@ -1,0 +1,34 @@
+[Unit]
+Description=PseudoDogecoin public tunnel (Cloudflare quick tunnel -> RPC proxy)
+After=network.target pdoge-rpc-proxy.service
+Wants=network.target pdoge-rpc-proxy.service
+
+[Service]
+Type=simple
+# Canonical copy: ~/workspace/pseudodogecoin/systemd/pdoge-tunnel.service
+# NOTE: quick-tunnel URLs are ephemeral; the live URL is written to
+# ~/workspace/pseudodogecoin/tunnel-url.txt on each start.
+WorkingDirectory=/home/hatch/workspace/pseudodogecoin
+ExecStart=/home/hatch/workspace/pseudodogecoin/scripts/run-tunnel.sh
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=600
+StartLimitBurst=10
+KillMode=control-group
+TimeoutStopSec=15
+MemoryMax=256M
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pdoge-tunnel
+Environment=HOME=/root
+# cloudflared needs the runtime egress proxy for outbound connections.
+Environment=NODE_USE_ENV_PROXY=1
+Environment=HTTPS_PROXY=http://hatch-runtime:2db0eaaaf1594c268f5eb154edd9c861@hatch-egress-proxy:3128
+Environment=https_proxy=http://hatch-runtime:2db0eaaaf1594c268f5eb154edd9c861@hatch-egress-proxy:3128
+Environment=HTTP_PROXY=http://hatch-runtime:2db0eaaaf1594c268f5eb154edd9c861@hatch-egress-proxy:3128
+Environment=http_proxy=http://hatch-runtime:2db0eaaaf1594c268f5eb154edd9c861@hatch-egress-proxy:3128
+Environment=NO_PROXY=localhost,127.0.0.1,::1
+Environment=no_proxy=localhost,127.0.0.1,::1
+
+[Install]
+WantedBy=default.target

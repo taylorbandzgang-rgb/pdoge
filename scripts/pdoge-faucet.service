@@ -1,0 +1,18 @@
+[Unit]
+Description=PDOGE wPETH faucet API (Dollar Dash rewards)
+After=network.target pdoge-node.service
+BindsTo=pdoge-node.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/pdoge
+EnvironmentFile=/opt/pdoge/faucet.env
+Environment=PDOGE_RPC_URL=http://127.0.0.1:8545
+Environment=FAUCET_PORT=8099
+ExecStart=/usr/bin/node /opt/pdoge/wpeth-faucet-server.js
+Restart=always
+RestartSec=5
+# Mirror the User= line from pdoge-relayer.service when installing.
+
+[Install]
+WantedBy=multi-user.target

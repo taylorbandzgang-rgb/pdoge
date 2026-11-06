@@ -1,0 +1,25 @@
+[Unit]
+Description=PseudoDogecoin secure RPC proxy (allowlist filter, port 8549)
+After=network.target pdoge-node.service
+Wants=network.target
+BindsTo=pdoge-node.service
+
+[Service]
+Type=simple
+# Canonical copy: ~/workspace/pseudodogecoin/systemd/pdoge-rpc-proxy.service
+WorkingDirectory=/home/hatch/workspace/pseudodogecoin
+ExecStart=/usr/bin/node /home/hatch/workspace/pseudodogecoin/scripts/rpc-proxy.js
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=300
+StartLimitBurst=10
+KillMode=control-group
+TimeoutStopSec=10
+MemoryMax=256M
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pdoge-rpc-proxy
+Environment=HOME=/root
+
+[Install]
+WantedBy=default.target

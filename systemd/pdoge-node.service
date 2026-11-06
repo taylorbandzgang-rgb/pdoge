@@ -1,0 +1,38 @@
+[Unit]
+Description=PseudoDogecoin node (chain ID 42069, port 8546)
+Documentation=https://github.com/NomicFoundation/hardhat
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+# Canonical copy lives at ~/workspace/pseudodogecoin/systemd/pdoge-node.service
+# (persistent home storage). The watchdog reinstalls it if /etc loses it.
+WorkingDirectory=/home/hatch/workspace/pseudodogecoin
+# Anvil (not hardhat node): chain state persists to disk via --dump-state /
+# --load-state in scripts/run-anvil.sh, so restarts no longer wipe the chain.
+ExecStart=/home/hatch/workspace/pseudodogecoin/scripts/run-anvil.sh
+# RPC binds localhost only: not exposed to the network. That is the first guard.
+
+# Supervision: always restart on crash, 10s backoff.
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+# Clean shutdown of the node process group.
+KillMode=control-group
+TimeoutStopSec=15
+
+# Bounded resources and logs.
+MemoryMax=1G
+CPUQuota=100%
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pdoge-node
+
+# Hardhat needs a writable home for its cache/config lookups.
+Environment=HOME=/root
+
+[Install]
+WantedBy=default.target
