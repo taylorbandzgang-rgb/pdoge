@@ -1,0 +1,21 @@
+[Unit]
+Description=pBitcoin miner (PDOGE chain 42069, mines to operator wallet)
+After=network.target pdoge-geth.service
+BindsTo=pdoge-geth.service
+
+[Service]
+Type=simple
+User=pdoge-miner
+Group=pdoge-miner
+WorkingDirectory=/home/hatch/pdoge
+EnvironmentFile=/etc/pdoge/pdoge-miner.env
+ExecStart=/usr/bin/node scripts/mine-pbitcoin.js
+Restart=always
+RestartSec=10
+# The miner must submit sends to the local node, NOT the read-only proxy.
+# /etc/pdoge/pdoge-miner.env sets PDOGE_RPC_URL=http://127.0.0.1:8545
+# plus OPERATOR_PRIVATE_KEY (copied from /etc/pdoge/pdoge-relayer.env,
+# never printed) and PBITCOIN_ADDRESS=0x2D3D8Be994ee04531Bfcef9234Be26E793DF5C37.
+
+[Install]
+WantedBy=multi-user.target

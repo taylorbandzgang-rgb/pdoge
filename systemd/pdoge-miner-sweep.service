@@ -1,0 +1,13 @@
+[Unit]
+Description=Sweep mined pBitcoin from operator wallet to savings wallet
+After=network.target pdoge-geth.service
+
+[Service]
+Type=oneshot
+User=pdoge-miner
+Group=pdoge-miner
+WorkingDirectory=/home/hatch/pdoge
+EnvironmentFile=/etc/pdoge/pdoge-miner.env
+ExecStart=/usr/bin/node scripts/sweep-pbitcoin.js
+# Same env file as pdoge-miner.service: OPERATOR_PRIVATE_KEY,
+# PDOGE_RPC_URL=http://127.0.0.1:8545, PBITCOIN_ADDRESS, SAVINGS_ADDRESS.
