@@ -6,7 +6,7 @@ After=network.target pdoge-geth.service
 Type=oneshot
 User=pdoge-miner
 Group=pdoge-miner
-WorkingDirectory=/home/hatch/pdoge
+WorkingDirectory=/home/taylorbandzgang/pdoge
 EnvironmentFile=/etc/pdoge/pdoge-miner.env
 ExecStart=/usr/bin/node scripts/sweep-pbitcoin.js
 # Same env file as pdoge-miner.service: OPERATOR_PRIVATE_KEY,

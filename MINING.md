@@ -20,6 +20,8 @@ pBitcoin is a mineable token that lives **only** on the PDOGE chain (chain ID **
 
 About that estimate: nobody knows the network hashrate, so there is no single "time to next mint." The expected work is the difficulty — 131,071 hashes — and the time is just that divided by *your* hashrate. The contract retargets toward ~10 minutes between mints, so as more miners join, difficulty climbs and each mint takes longer.
 
+**See every mint:** the live [Mint Explorer](https://34.148.123.122.nip.io/site/mining.html) on the official site lists all mints with block, time, transaction hash, miner, nonce and solution digest — read straight from the chain, refreshing every 30 seconds.
+
 ## Mine it — one command (after setup)
 
 You need your own PDOGE node (the public RPC rejects sends), a little PDOGE for gas, and a miner key. Full node guide: [NODE_JOINING.md](NODE_JOINING.md).
