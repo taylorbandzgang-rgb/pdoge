@@ -15,11 +15,11 @@ That's the part we're proudest of. The rest of the chain is below.
 
 ## What this is
 
-- **A private EVM chain** (Hardhat/anvil). The operator sets the gas price, so a transfer costs a fraction of a cent by decree. That's the whole "cheap gas" story: it's our network, our rules.
+- **A live, public EVM chain** (geth 1.13 Clique, chain 42069). Anyone can run a node and join — see [NODE_JOINING.md](NODE_JOINING.md). The operator sets the gas price, so a transfer costs a fraction of a cent by decree. That's the whole "cheap gas" story: it's our network, our rules.
 - **PETH** is an ERC20 on Ethereum mainnet, bridged in as **wPETH** 1:1 when PETH locks on mainnet. Same PETH, now usable on the cheap chain.
 - **A Uniswap V2-style DEX** (factory + pairs), a **staking farm** (wPETH → PDOGE rewards), **synthetic BTC** backed by locked PETH, a **wPETH faucet** (play Dollar Dash, score 400+, claim 1 wPETH), and the vault above.
 
-It is NOT a public L2 — no Ethereum security, no outside validators, no decentralization. It's a sandbox chain, and the scaffold to build on. We're honest about that.
+It is NOT a public L2 — no Ethereum security. It's a small PoA chain with a single validator today; outside nodes can join and validators are voted in by existing signers (see [NODE_JOINING.md](NODE_JOINING.md)). It's a sandbox chain, and the scaffold to build on. We're honest about that.
 
 ## Architecture
 
@@ -90,7 +90,12 @@ Deploy scripts live in `scripts/`, contracts in `contracts/`. The relayer (`scri
 
 ## Run your own node
 
-The chain is multi-node — anyone can join. See **[NODE_JOINING.md](NODE_JOINING.md)** for the full guide: geth 1.13.15, the genesis file, the bootnode, and how to get PDOGE for gas. The genesis is in this repo (`genesis.json`) and at https://34.148.123.122.nip.io/site/genesis.json.
+The chain is public and multi-node — anyone can join. Full guide: **[NODE_JOINING.md](NODE_JOINING.md)**.
+
+- **Geth 1.13.15 exactly** (1.17+ dropped Clique)
+- **Genesis:** `genesis.json` in this repo, or https://34.148.123.122.nip.io/site/genesis.json (md5 `041c85e8fc1015d52b4a952abf1a2c5d`)
+- **Bootnode:** `enode://ba923083b792a691989c387fdcaa94dce24f9df349cbddf6c8d21011295426457ceb390aeb6bd527a344ee72cf49e40df4cddfaeba2fc66f3a0a0b6b27fff56f@34.148.123.122:30303`
+- **Chain ID:** 42069, **gas:** PDOGE (PETH can't pay gas — get starter PDOGE by opening a GitHub issue with your address)
 
 ## Contributing
 
