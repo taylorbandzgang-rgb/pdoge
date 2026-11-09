@@ -121,6 +121,7 @@ Open an issue first for big changes. Small fixes, just send a PR.
 - **Genesis:** https://34.148.123.122.nip.io/site/genesis.json (also in this repo as `genesis.json`)
 - **Bootnode:** `enode://ba923083b792a691989c387fdcaa94dce24f9df349cbddf6c8d21011295426457ceb390aeb6bd527a344ee72cf49e40df4cddfaeba2fc66f3a0a0b6b27fff56f@34.148.123.122:30303`
 - **Run your own node:** [NODE_JOINING.md](NODE_JOINING.md)
+- **pBitcoin mining:** [MINING.md](MINING.md) — live stats, the miner, and how to verify the contract yourself
 - **Official site:** https://34.148.123.122.nip.io/site/
 - **Dollar Dash (wPETH faucet game):** https://34.148.123.122.nip.io/dollar-dash/
 - **PETH on Uniswap:** PETH/ETH pool `0x93333653a1E61C9F3C573165aa8f9C394d457E3f`
