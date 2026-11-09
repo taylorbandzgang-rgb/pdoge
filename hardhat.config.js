@@ -19,7 +19,15 @@ const networks = {
 
 /** @type import('hardhat/config').HardhatUserConfig */
 export default {
-  solidity: "0.8.24",
+  // Paris EVM (pre-Shanghai, no PUSH0): the PDOGE chain runs geth 1.13
+  // Clique, which rejects Shanghai/Cancun bytecode.
+  solidity: {
+    version: "0.8.24",
+    settings: {
+      evmVersion: "paris",
+      optimizer: { enabled: true, runs: 200 },
+    },
+  },
   networks,
 };
 
