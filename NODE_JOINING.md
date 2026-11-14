@@ -8,8 +8,8 @@ PDOGE is a live, public EVM chain. Anyone can run a node and join it. Four steps
 |---|---|
 | **Chain ID** | `42069` |
 | **Geth** | **1.13.15 exactly** — geth 1.17+ dropped Clique, it will refuse this chain |
-| **Genesis** | `genesis.json` in this repo, or https://34.148.123.122.nip.io/site/genesis.json — same file, md5 `041c85e8fc1015d52b4a952abf1a2c5d` |
-| **Bootnode** | `enode://ba923083b792a691989c387fdcaa94dce24f9df349cbddf6c8d21011295426457ceb390aeb6bd527a344ee72cf49e40df4cddfaeba2fc66f3a0a0b6b27fff56f@34.148.123.122:30303` |
+| **Genesis** | `genesis.json` in this repo, or https://34.148.123.122.nip.io/site/genesis.json — same file, md5 `50b6b94ef1f576e6a74e9cc1170a09bd` |
+| **Bootnode** | `enode://be97e1cf128a74f3d2d0f5cba5ab2dbd489456ead439b9f67b26147bcd86f2e3bde6597fef1d103f73e3bc77cc86b83ca16c52b19c4f5ffaadde9b00ab5ab544@34.148.123.122:30303` |
 
 ## Step 1 — Install geth 1.13.15
 
@@ -29,7 +29,7 @@ curl -LO https://raw.githubusercontent.com/taylorbandzgang-rgb/pdoge/main/genesi
 geth113 --datadir ./pdoge-data init genesis.json
 ```
 
-This loads the full live state: every contract, every balance, the MemeVault, the pools, the farm — all at the same addresses as the live chain.
+This loads the live state: pBitcoin and every wallet balance, all at the same addresses as the live chain. (The chain is pBitcoin-only since the November 2026 migration — the wrapped tokens, pools, and farms from the old state are not part of this genesis.)
 
 ## Step 3 — Start the node and connect to the bootnode
 
@@ -46,7 +46,7 @@ Then, in a second terminal, attach and add the bootnode:
 
 ```bash
 geth113 attach ./pdoge-data/geth.ipc
-> admin.addPeer("enode://ba923083b792a691989c387fdcaa94dce24f9df349cbddf6c8d21011295426457ceb390aeb6bd527a344ee72cf49e40df4cddfaeba2fc66f3a0a0b6b27fff56f@34.148.123.122:30303")
+> admin.addPeer("enode://be97e1cf128a74f3d2d0f5cba5ab2dbd489456ead439b9f67b26147bcd86f2e3bde6597fef1d103f73e3bc77cc86b83ca16c52b19c4f5ffaadde9b00ab5ab544@34.148.123.122:30303")
 ```
 
 Discovery is on, so your node may find peers on its own — if it hasn't peered up within a minute, `admin.addPeer` above is the reliable path. Make sure TCP/UDP **30303** is reachable from the internet, or your node can't be dialled back.
@@ -67,7 +67,7 @@ The chain has a single signer today (the operator, `0xD843A526EC1DDc009510c2cd34
 
 ## Gas: you need PDOGE, not PETH
 
-PDOGE is the chain's native gas token. **PETH cannot pay for gas** — it's an ERC20 on Ethereum mainnet. To get starter PDOGE, open a GitHub issue with your PDOGE address and the operator will fund enough for gas. (A public PDOGE faucet is a good first contribution — see `CONTRIBUTING.md`.)
+PDOGE is the chain's native gas token. **PETH cannot pay for gas** — it's an ERC20 on Ethereum mainnet. To get starter PDOGE, use the free faucet on the site — https://34.148.123.122.nip.io/site/ , "Get free PDOGE" section: 1 PDOGE per address per day, no sign-up. Or open a GitHub issue with your PDOGE address and the operator will fund enough for gas.
 
 ## If it breaks
 
@@ -75,3 +75,4 @@ PDOGE is the chain's native gas token. **PETH cannot pay for gas** — it's an E
 - **"clique does not support shanghai fork"** — wrong genesis or geth too new. Use the genesis above and geth 1.13.15. The chain is pre-Shanghai by design.
 - **Node won't peer** — check TCP/UDP 30303 is open, then `admin.addPeer` with the enode above. If your enode shows `discport=0`, you started with `--nodiscover`; restart without it.
 - **Wrong chain / empty state** — you initialised with the wrong genesis. Wipe it (`rm -rf ./pdoge-data`) and re-init with the genesis from this repo.
+
