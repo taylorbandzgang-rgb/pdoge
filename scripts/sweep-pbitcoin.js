@@ -17,7 +17,7 @@ import { readFile } from "node:fs/promises";
 import { ethers } from "ethers";
 
 const RPC_URL = process.env.PDOGE_RPC_URL || "http://127.0.0.1:8545";
-const TOKEN_ADDRESS = process.env.PBITCOIN_ADDRESS || "0x2D3D8Be994ee04531Bfcef9234Be26E793DF5C37";
+const TOKEN_ADDRESS = process.env.PBITCOIN_ADDRESS || "0x9575766161412b548300c231D883224F85d60DbD";
 const SAVINGS_ADDRESS = process.env.SAVINGS_ADDRESS || "0xd42F201ed7502D7AF699E2F523590567899a1Ae9";
 const OPERATOR_ADDRESS = "0xD843A526EC1DDc009510c2cd3403f06b2094C356";
 const KEY = process.env.OPERATOR_PRIVATE_KEY || process.env.MINER_PRIVATE_KEY || "";
