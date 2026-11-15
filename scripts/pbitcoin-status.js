@@ -9,7 +9,7 @@ import { readFile } from "node:fs/promises";
 import { ethers } from "ethers";
 
 const RPC_URL = process.env.PDOGE_RPC_URL || "https://34.148.123.122.nip.io";
-const TOKEN_ADDRESS = process.env.PBITCOIN_ADDRESS || "0x2D3D8Be994ee04531Bfcef9234Be26E793DF5C37";
+const TOKEN_ADDRESS = process.env.PBITCOIN_ADDRESS || "0x9575766161412b548300c231D883224F85d60DbD";
 
 async function artifact(name) {
   const raw = await readFile(`./artifacts/contracts/${name}.sol/${name}.json`, "utf8");
