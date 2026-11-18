@@ -93,7 +93,7 @@ Deploy scripts live in `scripts/`, contracts in `contracts/`. The relayer (`scri
 The chain is public and multi-node — anyone can join. Full guide: **[NODE_JOINING.md](NODE_JOINING.md)**.
 
 - **Geth 1.13.15 exactly** (1.17+ dropped Clique)
-- **Genesis:** `genesis.json` in this repo, or https://34.148.123.122.nip.io/site/genesis.json (md5 `041c85e8fc1015d52b4a952abf1a2c5d`)
+- **Genesis:** `genesis.json` in this repo, or https://34.148.123.122.nip.io/site/genesis.json (md5 `50b6b94ef1f576e6a74e9cc1170a09bd`)
 - **Bootnode:** `enode://ba923083b792a691989c387fdcaa94dce24f9df349cbddf6c8d21011295426457ceb390aeb6bd527a344ee72cf49e40df4cddfaeba2fc66f3a0a0b6b27fff56f@34.148.123.122:30303`
 - **Chain ID:** 42069, **gas:** PDOGE (PETH can't pay gas — get starter PDOGE by opening a GitHub issue with your address)
 
